@@ -1,4 +1,58 @@
-h1 {
-  font-family: helvetica;
-  font-weight: 200;
+@import 'colors';
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
+
+body {
+  background-color: $white;
+  width: 100%;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 400;
+}
+
+@for $i from 1 through 6 {
+  h#{7 - $i} {
+    font-family: 'Raleway', Helvetica, Arial, sans-serif;
+    font-size: $i * 0.6em;
+    font-weight: 700;
+    color: $cadet;
+    margin: 0.2em 0;
+  }
+}
+
+form {
+  width: 300px;
+  display: block;
+  margin: 100px auto 0;
+  label {
+    display: block;
+    color: $cadet;
+    font-weight: 800;
+    text-align: center;
+    font-size: 1.4em;
+  }
+  input {
+    display: block;
+    height: 50px;
+    margin: 5px 0;
+    font-size: 1em;
+    width: 100%;
+    &:focus {
+      outline: none;
+    }
+    &[type='text'] {
+      border: none;
+      border-bottom: 1px solid $seafoam;
+    }
+    &[type='submit'] {
+      font-family: 'Raleway', Helvetica, Arial, sans-serif;
+      cursor: pointer;
+      border-radius: 5px;
+      border: none;
+      width: 150px;
+      font-weight: 700;
+      font-size: 1em;
+      background-color: $navy;
+      color: $white;
+      margin: 30px auto 0;
+    }
+  }
 }
