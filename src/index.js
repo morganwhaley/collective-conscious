@@ -3,5 +3,5 @@ import { render } from 'react-dom';
 import App from './components/App';
 
 render(
-  <App name='Collective Conscious' />, document.getElementById('root')
+  <App />, document.getElementById('root')
 );
