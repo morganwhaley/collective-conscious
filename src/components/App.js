@@ -2,13 +2,14 @@ import '../assets/stylesheets/base.scss';
 import React, { Component } from 'react';
 import axios from 'axios';
 import ReposList from './repos-list';
+import RepoCommits from './repo-commits';
 
 class App extends Component {
 
   constructor(props) {
     super(props);
 
-    this.state = { org: '', repos: [], showResults: false };
+    this.state = { org: '', repos: [], showRepos: false };
   }
 
   render() {
@@ -26,7 +27,7 @@ class App extends Component {
           </label>
           <input type="submit" value="Submit" onClick={event => this.handleSubmit(event) } />
         </form>
-        { (this.state.showResults == true) ? <ReposList org={this.state.org} repos={this.state.repos} /> : null }
+        { (this.state.showRepos == true) ? <ReposList org={this.state.org} repos={this.state.repos} /> : null }
       </div>
     )
   }
@@ -37,10 +38,9 @@ class App extends Component {
   }
 
   getOrgRepos() {
-    const self = this;
     return axios.get(`https://api.github.com/orgs/${this.state.org}/repos`)
-      .then(response => this.setState({ repos: response.data, showResults: true }))
-      .catch(error => this.setState({ repos: [] }));
+      .then(response => this.setState({ repos: response.data, showRepos: true }))
+      .catch(error => this.setState({ repos: [], showRepos: false }));
   }
 
 };
