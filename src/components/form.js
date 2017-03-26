@@ -11,7 +11,7 @@ class Form extends Component {
   getOrgRepos(org) {
     var self = this;
     return axios.get('https://api.github.com/orgs/' + org + '/repos')
-      .then(function(response) {
+      .then((response) => {
         self.setState({ repos: response.data, showRepos: true });
         self.props.onOrgSearch(self.state.org, self.state.repos, self.state.showRepos)})
       .catch(error => this.setState({ repos: [], showRepos: false }));
@@ -23,7 +23,7 @@ class Form extends Component {
       <form>
         <label>Organization</label>
         <input type="text" name="org" onChange={event => this.setState({ org: event.target.value })} />
-        <input type="submit" value="Submit" onClick={function(event) {
+        <input type="submit" value="Submit" onClick={(event) => {
           event.preventDefault();
           self.getOrgRepos(self.state.org);
           }

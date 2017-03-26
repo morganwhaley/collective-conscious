@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import Form from './form';
 import ReposList from './repos-list';
-import RepoCommits from './repo-commits';
 
 class App extends Component {
 
