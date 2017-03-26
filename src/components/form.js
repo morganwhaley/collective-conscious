@@ -8,14 +8,12 @@ class Form extends Component {
     this.state = { org: '', repos: [], showRepos: false };
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    this.getOrgRepos();
-  }
-
   getOrgRepos(org) {
+    var self = this;
     return axios.get('https://api.github.com/orgs/' + org + '/repos')
-      .then(response => this.setState({ repos: response.data, showRepos: true }))
+      .then(function(response) {
+        self.setState({ repos: response.data, showRepos: true });
+        self.props.onOrgSearch(self.state.org, self.state.repos, self.state.showRepos)})
       .catch(error => this.setState({ repos: [], showRepos: false }));
   }
 
@@ -28,7 +26,6 @@ class Form extends Component {
         <input type="submit" value="Submit" onClick={function(event) {
           event.preventDefault();
           self.getOrgRepos(self.state.org);
-          self.props.onOrgSearch(self.state.org);
           }
         } />
       </form>
